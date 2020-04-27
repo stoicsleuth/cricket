@@ -50,18 +50,20 @@ function SchedulePage() {
 
   useFetchMore('schedule', schedule, fetchMore, loading)
 
-  if (loading && networkStatus !== 3) return <Loader />
-
   return (
     <div className="flex w-100 flex-column pt5-ns">
       <div className="ph3 ph7-l">
         <p className="black-80 f4 fw8 center">Schedule</p>
         <ScheduleTab type={type} status={status} setType={setType} setStatus={setStatus} />
-        <div className="flex flex-wrap">
-          {schedule.map((match) => (
-            <MatchCard status={status} match={match} key={match.matchID} />
-          ))}
-        </div>
+        {(loading && networkStatus !== 3)
+          ? <Loader />
+          : (
+            <div className="flex flex-wrap">
+              {schedule.map((match) => (
+                <MatchCard status={status} match={match} key={match.matchID} />
+              ))}
+            </div>
+          )}
       </div>
     </div>
   )
