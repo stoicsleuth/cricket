@@ -1,0 +1,15 @@
+$colors: (
+  "off-orange": #fcebda
+);
+
+@each $name, $hex in $colors {
+  .#{$name} {
+    color: $hex;
+  }
+  .bg-#{$name} {
+    background-color: $hex;
+  }
+  .b--#{$name} {
+    border-color: $hex;
+  }
+}
