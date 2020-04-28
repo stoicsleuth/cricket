@@ -8,6 +8,7 @@ import MatchCard from '../components/MatchCard'
 import useFetchMore from '../hooks/useFetchMore'
 import ScheduleTab from '../components/ScheduleTab'
 import Loader from '../components/Loader'
+import EmptyLogo from '../components/EmptyLogo'
 
 const GET_MATCH_SCHEDULE_QUERY = gql`
   query getMatchSchedule($type: String, $status: String, $page: Int) {
@@ -62,9 +63,11 @@ function SchedulePage() {
           <ScheduleTab type={type} status={status} setType={setType} setStatus={setStatus} />
           <Loader loading={loading} networkStatus={networkStatus}>
             <div className="flex flex-wrap">
-              {schedule?.map((match) => (
+              {schedule?.length > 0 ? schedule.map((match) => (
                 <MatchCard status={status} match={match} key={match.matchID} />
-              ))}
+              )) : (
+                <EmptyLogo />
+              )}
             </div>
           </Loader>
         </div>

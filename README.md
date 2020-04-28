@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Copy the `.env.example` file to the project directory and populate with necessary values.
 
+Run `yarn install` to install the project dependencies.
+
 ## Available Scripts
 
 In the project directory, you can run:

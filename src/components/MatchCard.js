@@ -51,6 +51,8 @@ function MatchCard({
   const classes = useStyles()
   const date = formatDuration(startDate)
 
+  const cardFooterContent = status !== 'upcoming' ? matchResult : date
+
   const teamNameMapping = matchScore.reduce(
     (acc, team) => ({ ...acc, [team.teamShortName]: team.teamFullName }), {}
   )
@@ -80,7 +82,7 @@ function MatchCard({
           </div>
           <div className="flex justify-center w-100">
             <span className={`${classes.matchTime} relative f7 bg-off-orange dark-gray w-60 tc ph4 pv1 ma3 br-pill`}>
-              {status !== 'upcoming' ? matchResult : date}
+              {cardFooterContent}
             </span>
           </div>
         </div>
