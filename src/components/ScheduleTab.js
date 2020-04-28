@@ -8,7 +8,7 @@ import { statuses, types } from '../constants/schedule'
 
 function ScheduleTab({ status, type, setType, setStatus }) {
   return (
-    <div className="pt3 br2 pr3-ns mb3-ns">
+    <div className="br2 pr3-ns mb3-ns">
       <div className="bg-white">
         <div className="flex w-90 ph3 center pv3">
           {statuses.map((currentStatus, index) => (

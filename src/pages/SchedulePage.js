@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import gql from 'graphql-tag'
+import { Helmet } from 'react-helmet'
 import { useQuery } from '@apollo/react-hooks'
 
 import MatchCard from '../components/MatchCard'
@@ -51,21 +52,24 @@ function SchedulePage() {
   useFetchMore('schedule', schedule, fetchMore, loading)
 
   return (
-    <div className="flex w-100 flex-column pt5-ns">
-      <div className="ph3 ph7-l">
-        <p className="black-80 f4 fw8 center">Schedule</p>
-        <ScheduleTab type={type} status={status} setType={setType} setStatus={setStatus} />
-        {(loading && networkStatus !== 3)
-          ? <Loader />
-          : (
+    <Fragment>
+      <Helmet>
+        <title>Schedule</title>
+      </Helmet>
+      <div className="flex w-100 flex-column pt5-ns relative">
+        <div className="ph3 ph7-l">
+          <p className="black-80 f4 fw8 center">Schedule</p>
+          <ScheduleTab type={type} status={status} setType={setType} setStatus={setStatus} />
+          <Loader loading={loading} networkStatus={networkStatus}>
             <div className="flex flex-wrap">
-              {schedule.map((match) => (
+              {schedule?.map((match) => (
                 <MatchCard status={status} match={match} key={match.matchID} />
               ))}
             </div>
-          )}
+          </Loader>
+        </div>
       </div>
-    </div>
+    </Fragment>
   )
 }
 
